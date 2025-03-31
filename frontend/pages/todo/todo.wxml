@@ -1,0 +1,38 @@
+<view class="container">
+  <!-- 标题区域 -->
+  <view class="header">
+    <text class="title">待办事项</text>
+  </view>
+
+  <view class="button-bar">
+    <van-button bind:tap="navigateToAdd" class="add-button" size="normal" round type="info" icon="/images/add.png">添加</van-button>
+  </view>
+  
+  <!-- 待办事项列表 -->
+  <view class="todo-list">
+    <scroll-view class="todo-scroll" scroll-y="true" style="height: {{scrollHeight}}px;">
+      <view class="todo-item" wx:for="{{todos}}" wx:key="todoId" data-todo-id="{{item.todoId}}" style="border-left: 6rpx solid {{item.priorityColor}}" animation="{{item.animationData}}">
+        <view class="todo-content">
+        <view>
+          <text class="todo-title">{{item.content}}</text>
+        </view>
+          <view>
+            <text class="todo-priority" >优先级: {{item.priority}}</text>
+          </view>
+          <view>
+            <text class="todo-priority" >提醒时间: {{item.remindTime}}</text>
+          </view>
+        </view>
+        <view class="todo-actions">
+          <button class="edit-btn" bindtap="editTodo" data-todo-id="{{item.todoId}}">编辑</button>
+          <button class="delete-btn" bindtap="showDeleteAnimation" data-todo-id="{{item.todoId}}">删除</button>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 底部信息 -->
+  <view class="footer">
+    <text class="copyright">© 2025 校园助手</text>
+  </view>
+</view>

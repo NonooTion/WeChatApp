@@ -1,0 +1,51 @@
+<view class="container">
+  <!-- 标题区域 -->
+  <view class="header">
+    <text class="title">校园助手</text>
+    <text class="subtitle">让校园生活更便捷</text>
+  </view>
+
+  <!-- 功能模块区域 -->
+  <view class="feature-section">
+    <!-- 功能卡片1：待办事项 -->
+    <view class="feature-card" bindtap="navigateToTodo" animation="{{animationData1}}">
+      <image class="feature-icon" src="/images/todo_icon.png" />
+      <view class="feature-text">
+        <text class="feature-title">待办事项</text>
+        <text class="feature-desc">轻松管理学习与生活</text>
+      </view>
+    </view>
+
+    <!-- 功能卡片2：课程表 -->
+    <view class="feature-card" bindtap="navigateToCourse" animation="{{animationData2}}">
+      <image class="feature-icon" src="/images/course_icon.png" />
+      <view class="feature-text">
+        <text class="feature-title">课程列表</text>
+        <text class="feature-desc">规划学习时间</text>
+      </view>
+    </view>
+
+    <!-- 功能卡片3：校园话题讨论区 -->
+    <view class="feature-card" bindtap="navigateToTopic" animation="{{animationData3}}">
+      <image class="feature-icon" src="/images/discussion_icon.png" />
+      <view class="feature-text">
+        <text class="feature-title">校园话题</text>
+        <text class="feature-desc">交流互动，分享见解</text>
+      </view>
+    </view>
+
+    <!-- 功能卡片4：失物招领 -->
+    <view class="feature-card" bindtap="navigateToLostAndFound" animation="{{animationData4}}">
+      <image class="feature-icon" src="/images/lost_icon.png" />
+      <view class="feature-text">
+        <text class="feature-title">失物招领</text>
+        <text class="feature-desc">快速找回遗失物品</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部信息 -->
+  <view class="footer">
+    <text class="copyright">© 2025 校园助手</text>
+  </view>
+</view>

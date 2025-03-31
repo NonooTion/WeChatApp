@@ -1,0 +1,288 @@
+/* 保持原有所有rpx数值不变 */
+.container {
+  width: 100%;
+  height: 100vh;
+  background-color: #f5f7fa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.header {
+  width: 100%;
+  margin-bottom: 20rpx;
+}
+
+.title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #1296db;
+  text-align: center;
+}
+
+.schedule-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  overflow-x: auto;
+  margin-bottom: 20rpx;
+}
+
+.time-column {
+  width: 80rpx;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  border-right: 1rpx solid #e0e0e0;
+  background-color: #ffffff;
+}
+
+.day-columns {
+  flex: 1;
+  display: flex;
+}
+
+.day-column {
+  width: 92rpx;
+  background-color: #ffffff;
+}
+
+.day-header {
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-weight: bold;
+  background-color: #e6f7ff;
+  border-bottom: 1rpx solid #e0e0e0;
+}
+
+.course-cells {
+  display: flex;
+  flex-direction: column;
+}
+
+.course-cell {
+  height: 198rpx;
+  border: 1rpx solid #e0e0e0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: -1rpx;
+}
+
+/* 新增课程信息截断样式 */
+.course-info {
+  width: 88rpx;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(18, 150, 219, 0.1);
+  border-radius: 10rpx;
+  padding: 5rpx;
+  box-sizing: border-box;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.course-name {
+  font-size: 23rpx;
+  font-weight: bold;
+  color: #1296db;
+  text-align: center;
+  margin-bottom: 10rpx;
+  /* 新增文本截断 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.course-classroom {
+  font-size: 17rpx;
+  color: #666;
+  text-align: center;
+  /* 新增文本截断 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.empty-info {
+  color: #999;
+  font-size: 24rpx;
+  width: 90rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.time-cell {
+  height: 200rpx;
+  line-height: 60rpx;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1rpx solid #e0e0e0;
+  font-size: 28rpx;
+}
+
+.header-cell {
+  height: 80rpx;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  background-color: #e6f7ff;
+}
+
+.footer {
+  margin-top: 30rpx;
+  color: #999;
+  font-size: 24rpx;
+}
+
+/* 新增详情弹窗样式（保持原有rpx单位） */
+.detail-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.detail-popup {
+  width: 80%;
+  background-color: white;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 10rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.detail-header {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detail-content {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.detail-item {
+  display: block;
+  margin-bottom: 20rpx;
+  font-size: 30rpx;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+/* 保持原有弹窗样式不变 */
+.popup-container, .confirm-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.popup, .confirm-popup {
+  width: 80%;
+  background-color: white;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 10rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 20rpx;
+}
+
+.input {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  border: 1rpx solid #ddd;
+  border-radius: 10rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+}
+
+.form-buttons, .confirm-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30rpx;
+}
+
+.submit-btn, .cancel-btn {
+  width: 48%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 10rpx;
+  font-size: 32rpx;
+}
+
+.submit-btn {
+  background-color: #1296db;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: #f0f2f5;
+  color: #666;
+}
+
+
+
+.help-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+}
+
+.help-popup {
+  width: 70%;
+  background-color: white;
+  border-radius: 20rpx;
+  padding: 30rpx;
+}
+
+.help-content {
+  padding: 20rpx 0;
+}
+
+.help-item {
+  font-size: 28rpx;
+  line-height: 1.6;
+  color: #666;
+  white-space: pre-wrap;
+}

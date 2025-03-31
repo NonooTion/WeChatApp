@@ -1,0 +1,116 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+  max-height: 100vh;
+  background-color: #f0f2f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30rpx;
+  padding-bottom: 0%;
+  box-sizing: border-box;
+}
+
+/* 标题区域样式 */
+.header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40rpx;
+  padding: 20rpx 0;
+}
+
+.title {
+  font-size: 56rpx;
+  font-weight: bold;
+  color: #1296db;
+  margin-bottom: 15rpx;
+  display: block;
+}
+
+.subtitle {
+  display: block;
+  font-size: 32rpx;
+  color: #666;
+}
+
+/* 功能模块区域样式 */
+.feature-section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+  padding: 0 20rpx;
+}
+
+/* 功能卡片样式 */
+.feature-card {
+  background: linear-gradient(135deg, #e6f7ff 0%, #ffffff 100%);
+  border-radius: 40rpx;
+  padding: 50rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 15rpx 30rpx rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.feature-card:active {
+  transform: scale(0.98);
+  box-shadow: 0 8rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.feature-card:active::after {
+  opacity: 1;
+}
+
+.feature-icon {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 40rpx;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:active .feature-icon {
+  transform: scale(0.95);
+}
+
+.feature-text {
+  flex: 1;
+}
+
+.feature-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #1296db;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.feature-desc {
+  font-size: 32rpx;
+  color: #666;
+  line-height: 1.6;
+  display: block;
+}
+
+/* 底部信息样式 */
+.footer {
+  margin-top: 40rpx;
+  color: #999;
+  font-size: 24rpx;
+  padding: 20rpx 0;
+}

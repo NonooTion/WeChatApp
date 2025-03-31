@@ -1,0 +1,68 @@
+<view class="container">
+  <view class="detail-card">
+    <view class="header">
+      <view class="type-tag {{ item.type === 'lost' ? 'lost' : 'found' }}">
+        {{ item.type === 'lost' ? '寻物启事' : '招领启事' }}
+      </view>
+      <view class="status-tag {{ item.status === '待处理' ? 'pending' : 'resolved' }}">
+        {{ item.status === '待处理' ? '待处理' : '已解决' }}
+      </view>
+    </view>
+    <view style="display: flex; justify-content: space-between;">
+      <view>
+        <view class="title">{{ item.title }}</view>
+
+        <view class="content">{{ item.content }}</view>
+
+        <view class="location" wx:if="{{ item.location }}">
+             <van-icon name="location-o" />
+            <text>{{ item.location }}</text>
+        </view>
+      </view>
+      <view class="image" wx:if="{{ item.itemImgUrl }}">
+            <image src="{{ baseUrl + item.itemImgUrl }}" mode="aspectFit" bindtap="previewImage" />
+      </view>
+    </view>
+
+
+
+    <view class="info">
+      <view class="author">
+        <image class="avatar" src="{{ baseUrl + item.userImgUrl }}" mode="aspectFill" />
+        <text class="name">{{ item.name }}</text>
+      </view>
+      <text class="time">{{ item.createTime }}</text>
+    </view>
+  </view>
+
+  <!-- 联系信息 -->
+  <view class="contact-card">
+    <view class="card-title">联系方式</view>
+    <view class="contact-list">
+      <view class="contact-item" wx:if="{{ item.phone }}">
+        <van-icon name="phone-o" />
+        <text>{{ item.phone }}</text>
+      </view>
+      <view class="contact-item" wx:if="{{ item.email }}">
+        <van-icon name="email-o" />
+        <text>{{ item.email }}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-bar">
+    <view class="action-btn" bindtap="handleContact">
+      <van-icon name="phone-o" />
+      <text>联系发布者</text>
+    </view>
+    <view class="action-btn" bindtap="handleResolve" wx:if="{{ item.status === 'pending' }}">
+      <van-icon name="success" />
+      <text>标记已解决</text>
+    </view>
+    <view class="action-btn delete" bindtap="handleDelete" wx:if="{{ isOwner }}">
+      <van-icon name="delete-o" />
+      <text>删除</text>
+    </view>
+  </view>
+</view> 

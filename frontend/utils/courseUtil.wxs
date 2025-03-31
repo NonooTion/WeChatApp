@@ -1,0 +1,42 @@
+var getCourseInfo = function(courses, day, time) {
+  for (var i = 0; i < courses.length; i++) {
+    
+    if (courses[i].day === day.toString() && courses[i].time === time.toString()) {
+      return courses[i];
+    }
+  }
+  return null;
+};
+var getRandomColor = function() {
+  var colors = [
+    "rgba(18, 150, 219, 0.15)",   // 稍微深一点的蓝色
+    "rgba(105, 80, 150, 0.15)",   // 稍微深一点的紫色
+    "rgba(80, 150, 80, 0.15)",    // 稍微深一点的绿色
+    "rgba(150, 80, 80, 0.15)",    // 稍微深一点的红色
+    "rgba(80, 150, 150, 0.15)",   // 稍微深一点的青色
+    "rgba(150, 150, 80, 0.15)",   // 稍微深一点的黄色
+    "rgba(120, 80, 150, 0.15)",   // 稍微深一点的紫罗兰色
+    "rgba(150, 80, 120, 0.15)",   // 稍微深一点的品红色
+    "rgba(80, 120, 150, 0.15)",   // 稍微深一点的宝蓝色
+    "rgba(120, 150, 80, 0.15)",   // 稍微深一点的橄榄绿
+    "rgba(80, 80, 150, 0.15)",    // 稍微深一点的蓝色
+    "rgba(150, 120, 80, 0.15)",   // 稍微深一点的棕色
+    "rgba(80, 150, 120, 0.15)",   // 稍微深一点的青绿色
+    "rgba(120, 150, 120, 0.15)",  // 稍微深一点的灰色绿
+    "rgba(100, 100, 100, 0.15)"   // 稍微深一点的灰色
+];
+
+  // 随机选择一个颜色
+  var randomIndex = Math.floor(Math.random() * colors.length);
+  return colors[randomIndex];
+};
+
+function getDelay(day, time) {
+  return ((day - 1) * 5 + (time - 1)) * 0.2;
+}
+
+module.exports = {
+  getCourseInfo: getCourseInfo,
+  getRandomColor: getRandomColor,
+  getDelay: getDelay
+};

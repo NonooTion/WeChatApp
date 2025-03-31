@@ -1,0 +1,63 @@
+<view class="container">
+  <!-- 话题内容 -->
+  <view class="topic-container">
+    <view class="topic-header">
+      <view class="topic-type {{topic.isAnonymous ? 'anonymous' : 'normal'}}">
+        {{topic.isAnonymous ? '匿名话题' : '普通话题'}}
+      </view>
+      <text class="topic-time">{{topic.createTime}}</text>
+    </view>
+    <view class="topic-content">
+      <text class="topic-title">{{topic.title}}</text>
+      <text class="topic-desc">{{topic.content}}</text>
+    </view>
+    <view class="topic-info" >
+      <view class="topic-author" wx:if="{{!topic.isAnonymous}}">
+        <image class="avatar" src="{{baseUrl+topic.imgUrl}}" />
+        <text>{{topic.name}}</text>
+      </view>
+      <view class="topic-stats">
+        <view class="like-btn" bindtap="likeTopic">
+          <van-icon name="{{'good-job' }}" size="30rpx" />
+          <text>{{topic.likeCount}}</text>
+        </view>
+        <text class="comment-count">{{topic.commentCount}}评论</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 评论列表 -->
+  <view class="comments-container">
+    <view class="comments-header">
+      <text>评论({{comments.length}})</text>
+    </view>
+    <view class="comments-list">
+      <block wx:for="{{comments}}" wx:key="commentId">
+        <view class="comment-item">
+          <image class="avatar" src="{{item.avatar}}" />
+          <view class="comment-content">
+            <view class="comment-header">
+              <text class="commenter">{{item.name}}</text>
+              <text class="comment-time">{{item.createTime}}</text>
+            </view>
+            <text class="comment-text">{{item.content}}</text>
+            <view class="comment-actions">
+              <view class="delete-btn" bindtap="deleteComment" data-comment-id="{{item.commentId}}">
+                删除
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 添加评论 -->
+  <view class="comment-input">
+    <input class="comment-text" 
+           placeholder="添加评论..." 
+           value="{{commentInput}}"
+           bindinput="onCommentInput" />
+    <button class="send-btn" bindtap="submitComment">发送</button>
+  </view>
+</view>

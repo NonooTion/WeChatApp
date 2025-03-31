@@ -1,0 +1,1 @@
+ALTER TABLE lost_found CHANGE COLUMN img_url item_img_url VARCHAR(255); 

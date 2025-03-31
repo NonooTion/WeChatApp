@@ -1,0 +1,146 @@
+<!-- pages/index/index.wxml -->
+<wxs src="/utils/courseUtil.wxs" module="courseUtils"></wxs>
+<view class="container">
+  <!-- 标题区域 -->
+  <view class="header">
+    <text class="title">课程表</text>
+  </view>
+
+  <!-- 课程表主体 -->
+  <view class="schedule-container">
+    <!-- 时间列 -->
+    <view class="time-column">
+      <view class="header-cell time-cell">
+        <view bind:tap="showHelp">
+          <van-icon name="question-o" size="50rpx"/>
+        </view>
+      </view>
+      <view class="time-cell">
+        <text>1</text>
+        <text>08:00</text>
+        <text>09:50</text>
+      </view>
+      <view class="time-cell">
+        <text>2</text>
+        <text>10:10</text>
+        <text>12:00</text>
+      </view>
+      <view class="time-cell">
+        <text>3</text>
+        <text>14:00</text>
+        <text>15:50</text>
+      </view>
+      <view class="time-cell">
+        <text>4</text>
+        <text>16:10</text>
+        <text>18:00</text>
+      </view>
+      <view class="time-cell">
+        <text>5</text>
+        <text>19:00</text>
+        <text>20:50</text>
+      </view>
+    </view>
+
+    <!-- 星期列 -->
+    <view class="day-columns">
+      <view class="day-column" wx:for="{{days}}" wx:for-index="idx" wx:key="day">
+        <view class="day-header">{{item}}</view>
+        <view class="course-cells">
+          <view class="course-cell" 
+                wx:for="{{courseTimes}}" 
+                wx:key="time" 
+                data-day="{{idx + 1}}" 
+                data-time="{{index + 1}}"
+                bindtap="handleCourseTap"
+                bindlongpress="handleCourseLongPress">
+            <view class="course-info" 
+                  wx:if="{{courseUtils.getCourseInfo(courses, idx + 1, index + 1)}}" 
+                  style="background-color: {{courseUtils.getRandomColor()}}">
+              <text class="course-name">{{courseUtils.getCourseInfo(courses, idx + 1, index + 1).courseName}}</text>
+              <text class="course-classroom">{{courseUtils.getCourseInfo(courses, idx + 1, index + 1).classroom}}</text>
+            </view>
+            <view class="empty-info" wx:else>
+              <text></text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部信息 -->
+  <view class="footer">
+    <text class="copyright">© 2025 校园助手</text>
+  </view>
+
+  <!-- 添加/编辑弹窗 -->
+  <view class="popup-container" hidden="{{!showPopup}}">
+    <view class="popup">
+      <view class="popup-header">
+        <text>{{popupTitle}}</text>
+        <view class="popup-close" bindtap="closePopup">×</view>
+      </view>
+      <view class="popup-content">
+        <view class="form-group">
+          <text>课程名称:</text>
+          <input class="input" 
+                 placeholder="请输入课程名称" 
+                 value="{{courseForm.courseName}}" 
+                 bindinput="onCourseNameInput" />
+        </view>
+        <view class="form-group">
+          <text>教室:</text>
+          <input class="input" 
+                 placeholder="请输入教室" 
+                 value="{{courseForm.classroom}}" 
+                 bindinput="onClassroomInput" />
+        </view>
+        <view class="form-buttons">
+          <button class="cancel-btn" bindtap="closePopup">取消</button>
+          <button class="submit-btn" bindtap="submitCourse">确定</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 删除确认弹窗 -->
+  <view class="confirm-container" hidden="{{!showConfirm}}">
+    <view class="confirm-popup">
+      <text class="confirm-text">确定要删除该课程吗？</text>
+      <view class="confirm-buttons">
+        <button class="cancel-btn" bindtap="closeConfirm">取消</button>
+        <button class="submit-btn" bindtap="deleteCourse">确定</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 课程详情弹窗 -->
+  <view class="detail-container" hidden="{{!showDetail}}">
+    <view class="detail-popup">
+      <view class="detail-header">
+        <text>课程详情</text>
+        <view class="popup-close" bindtap="closeDetail">×</view>
+      </view>
+      <view class="detail-content">
+        <text class="detail-item">课程名称：{{currentCourse.courseName}}</text>
+        <text class="detail-item">上课地点：{{currentCourse.classroom}}</text>
+        <text class="detail-item">上课时间：周{{currentCourse.day}} 第{{currentCourse.time}}节</text>
+      </view>
+    </view>
+  </view>
+  <!-- 添加帮助弹窗 -->
+<view class="help-container" hidden="{{!showHelpPopup}}">
+  <view class="help-popup">
+    <view class="popup-header">
+      <view class="popup-close" bindtap="closeHelp">
+        <van-icon name="close" />
+      </view>
+      <text>使用说明</text>
+    </view>
+    <view class="help-content">
+      <text class="help-item">1. 点击空白格子添加课程\n2. 点击已有课程查看详情\n3. 长按课程进行编辑/删除\n</text>
+    </view>
+  </view>
+</view>
+</view>

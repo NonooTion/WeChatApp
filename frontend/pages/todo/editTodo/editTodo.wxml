@@ -1,0 +1,94 @@
+<view class="container">
+  <!-- 标题区域 -->
+  <view class="header">
+    <text class="title">编辑待办事项</text>
+  </view>
+
+  <!-- 表单区域 -->
+  <view class="todo-form">
+    <van-form>
+      <van-cell-group>
+        <!-- 待办事项输入框 -->
+        <van-field
+          name="content"
+          label="待办事项"
+          placeholder="请输入待办事项内容"
+          border="{{ true }}"
+          required
+          input-class="todo-input"
+          bind:change="onContentChange"
+          value="{{ content }}"
+        />
+
+        <!-- 优先级选择 -->
+        <van-field
+          name="priority"
+          label="优先级"
+          placeholder="请选择优先级"
+          border="{{ true }}"
+          required
+          readonly
+          is-link
+          bind:tap="showPriorityPopup"
+          value="{{ priorityText }}"
+        />
+        <van-popup
+          show="{{ showPriority }}"
+          position="bottom"
+          bind:close="closePriorityPopup"
+        >
+          <van-picker
+            show-toolbar="{{ true }}"
+            columns="{{ priorityOptions }}"
+            bind:confirm="onPriorityConfirm"
+            bind:cancel="closePriorityPopup"
+          />
+        </van-popup>
+
+        <!-- 提醒时间选择 -->
+        <van-field
+          name="remindTime"
+          label="提醒时间"
+          placeholder="请选择提醒时间"
+          border="{{ true }}"
+          required
+          readonly
+          is-link
+          bind:tap="showTimePopup"
+          value="{{ remindTime }}"
+        />
+        <van-popup
+          show="{{ showTime }}"
+          position="bottom"
+          bind:close="closeTimePopup"
+        >
+          <van-datetime-picker
+            type="datetime"
+            min="{{ minDate }}"
+            max="{{ maxDate }}"
+            bind:confirm="onTimeConfirm"
+            bind:cancel="closeTimePopup"
+          />
+        </van-popup>
+
+        <!-- 提交按钮 -->
+        <view class="submit-button">
+          <van-button
+            type="info"
+            size="large"
+            round
+            custom-class="form-submit-btn"
+            bind:tap="onSubmit"
+          >
+            提交
+          </van-button>
+        </view>
+      </van-cell-group>
+    </van-form>
+  </view>
+
+  <!-- 底部信息 -->
+  <view class="footer">
+    <text class="copyright">© 2025 校园助手</text>
+  </view>
+</view>

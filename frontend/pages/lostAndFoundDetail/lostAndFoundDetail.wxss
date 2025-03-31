@@ -1,0 +1,186 @@
+.container {
+  min-height: 100vh;
+  background-color: #f7f8fa;
+  padding: 12px;
+  padding-bottom: 80px;
+}
+
+.detail-card {
+  width: 90%;
+  margin-left: 10%;
+  margin-right: 10%;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.type-tag {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.type-tag.lost {
+  background-color: #fff7e6;
+  color: #fa8c16;
+}
+
+.type-tag.found {
+  background-color: #f6ffed;
+  color: #52c41a;
+}
+
+.status-tag {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.status-tag.pending {
+  background-color: #e6f7ff;
+  color: #1890ff;
+}
+
+.status-tag.resolved {
+  background-color: #f6ffed;
+  color: #52c41a;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.content {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 16px;
+}
+
+.location van-icon {
+  margin-right: 4px;
+}
+
+.image {
+  width: 150px;
+  width: 150px;
+  margin-bottom: 16px;
+}
+
+.image image {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.name {
+  font-size: 14px;
+  color: #666;
+}
+
+.time {
+  font-size: 12px;
+  color: #999;
+}
+
+.contact-card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 80rpx;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #666;
+}
+
+.contact-item van-icon {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  color: #666;
+}
+
+.action-btn van-icon {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.action-btn.delete {
+  color: #ff4d4f;
+} 

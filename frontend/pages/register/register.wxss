@@ -1,0 +1,103 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.background_image {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: -999;
+}
+
+/* 标题区域样式 */
+.header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 60rpx;
+}
+
+.title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #1296db;
+  margin-bottom: 10rpx;
+}
+
+.subtitle {
+  display: block;
+  font-size: 28rpx;
+  color: #666;
+}
+
+/* 登录表单区域样式 */
+.login-form {
+  width: 100%;
+  max-width: 600rpx;
+  background: linear-gradient(135deg, #e6f7ff 0%, #ffffff 100%);
+  border-radius: 30rpx;
+  padding: 60rpx 40rpx;
+  box-shadow: 0 10rpx 20rpx rgba(0, 0, 0, 0.08);
+  margin-bottom: 60%;
+}
+
+/* 输入框组样式 */
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40rpx;
+  border-bottom: 1rpx solid #e0e0e0;
+  padding-bottom: 20rpx;
+}
+
+.input-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+
+.input {
+  flex: 1;
+  font-size: 32rpx;
+  color: #333;
+}
+
+/* 登录按钮样式 */
+.login-btn {
+  width: 100%;
+  height: 90rpx;
+  background: linear-gradient(90deg, #1296db, #1e88e5);
+  border-radius: 45rpx;
+  color: white;
+  font-size: 36rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.login-btn-hover {
+  background: linear-gradient(90deg, #0d82c2, #1a75c2);
+}
+
+/* 底部链接样式 */
+.bottom-links {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.link {
+  font-size: 28rpx;
+  color: #1296db;
+  text-decoration: none;
+}

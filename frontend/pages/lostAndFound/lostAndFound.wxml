@@ -1,0 +1,150 @@
+<view class="container">
+  <!-- 搜索框 -->
+  <view class="search-box">
+    <van-search
+      value="{{ searchValue }}"
+      placeholder="搜索失物招领"
+      shape="round"
+      background="#ffffff"
+      bind:change="onSearchChange"
+      bind:search="onSearch"
+    />
+  </view>
+
+  <!-- 标签页 -->
+  <view class="tabs-box">
+    <van-tabs active="{{ activeTab }}" bind:change="onTabChange" color="#1296db" line-width="40">
+      <van-tab title="全部" name="all" />
+      <van-tab title="寻物" name="lost" />
+      <van-tab title="招领" name="found" />
+    </van-tabs>
+  </view>
+
+  <!-- 失物招领列表 -->
+  <scroll-view 
+    class="list" 
+    scroll-y 
+    bindscrolltolower="onLoadMore"
+    refresher-enabled="{{ true }}"
+    bindrefresherrefresh="onRefresh"
+    refresher-triggered="{{ isRefreshing }}"
+  >
+    <block wx:for="{{ items }}" wx:key="lfId">
+      <view class="item-card" bindtap="goToDetail" data-id="{{ item.lfId }}">
+        <view class="item-header">
+          <view class="item-type {{ item.type === 'lost' ? 'lost' : 'found' }}">
+            {{ item.type === 'lost' ? '寻物启事' : '招领启事' }}
+          </view>
+          <text class="item-time">{{ item.createTime }}</text>
+        </view>
+        <view style="display: flex; justify-content: space-between;">
+        <view class="item-content">
+          <text class="item-title">{{ item.title }}</text>
+          <text class="item-desc">{{ item.content }}</text>
+          <view class="item-location" wx:if="{{ item.location }}">
+            <van-icon name="location-o" />
+            <text>{{ item.location }}</text>
+          </view>
+        </view>
+        <view>
+          <view class="item-author">
+            <image class="avatar" src="{{ baseUrl+item.itemImgUrl }}" mode="aspectFill" />
+          </view>
+        </view>
+        </view>
+
+        <view class="item-info">
+          <view class="item-status {{ item.status === '待处理' ? 'pending' : 'resolved' }}">
+            {{ item.status }}
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- 加载状态 -->
+    <view class="loading-more" wx:if="{{ hasMore && !isLoading }}">
+      <van-loading size="24px">加载中...</van-loading>
+    </view>
+    <view class="no-more" wx:if="{{ !hasMore }}">
+      <text>没有更多了</text>
+    </view>
+  </scroll-view>
+
+  <!-- 发布按钮 -->
+  <view class="fab-button" bindtap="showActionSheet">
+    <van-icon name="plus" class="fab-icon" />
+  </view>
+
+  <!-- 发布选项 -->
+  <van-action-sheet show="{{ showActionSheet }}" bind:close="onActionSheetClose">
+    <view class="action-sheet">
+      <view class="action-item" bindtap="showPublishPopup">
+        <van-icon name="edit" />
+        <text>发布信息</text>
+      </view>
+      <view class="action-item" bindtap="goToMyItems">
+        <van-icon name="manager" />
+        <text>管理我的发布</text>
+      </view>
+    </view>
+  </van-action-sheet>
+
+  <!-- 发布弹窗 -->
+  <van-popup show="{{ showPublishPopup }}" position="bottom" round bind:close="onPublishPopupClose">
+    <view class="publish-popup">
+      <view class="popup-header">
+        <text class="popup-title">发布信息</text>
+        <van-icon name="cross" class="popup-close" bindtap="onPublishPopupClose" />
+      </view>
+      <view class="popup-content">
+        <view class="form-item">
+          <text class="form-label">类型</text>
+          <van-radio-group value="{{ publishForm.type }}" bind:change="onTypeChange">
+            <van-radio name="lost">寻物启事</van-radio>
+            <van-radio name="found">招领启事</van-radio>
+          </van-radio-group>
+        </view>
+        <view class="form-item">
+          <text class="form-label">标题</text>
+          <input 
+            class="form-input" 
+            placeholder="请输入标题" 
+            value="{{ publishForm.title }}"
+            bindinput="onTitleInput"
+          />
+        </view>
+        <view class="form-item">
+          <text class="form-label">内容</text>
+          <textarea 
+            class="form-textarea" 
+            placeholder="请输入内容" 
+            value="{{ publishForm.content }}"
+            bindinput="onContentInput"
+          />
+        </view>
+        <view class="form-item">
+          <text class="form-label">地点</text>
+          <input 
+            class="form-input" 
+            placeholder="请输入地点" 
+            value="{{ publishForm.location }}"
+            bindinput="onLocationInput"
+          />
+        </view>
+        <view class="form-item">
+          <text class="form-label">图片</text>
+          <van-uploader
+            file-list="{{ publishForm.fileList }}"
+            bind:after-read="afterRead"
+            bind:delete="onDelete"
+            max-count="1"
+          />
+        </view>
+        <view class="btn-group">
+          <view class="btn btn-default" bindtap="onPublishPopupClose">取消</view>
+          <view class="btn btn-primary" bindtap="submitItem">发布</view>
+        </view>
+      </view>
+    </view>
+  </van-popup>
+</view> 

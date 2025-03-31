@@ -1,0 +1,136 @@
+<view class="container">
+  <!-- 标签页 -->
+  <view class="tabs-box">
+    <van-tabs active="{{ activeTab }}" bind:change="onTabChange" color="#1296db" line-width="40">
+      <van-tab title="全部" name="all" />
+      <van-tab title="寻物" name="lost" />
+      <van-tab title="招领" name="found" />
+    </van-tabs>
+  </view>
+
+  <!-- 列表 -->
+  <scroll-view 
+    class="list" 
+    scroll-y 
+    bindscrolltolower="onLoadMore"
+    refresher-enabled="{{ true }}"
+    bindrefresherrefresh="onRefresh"
+    refresher-triggered="{{ isRefreshing }}"
+  >
+    <block wx:for="{{ items }}" wx:key="lfId">
+      <view class="item-card">
+        <view class="item-header">
+          <view class="item-type {{ item.type === 'lost' ? 'lost' : 'found' }}">
+            {{ item.type === 'lost' ? '寻物启事' : '招领启事' }}
+          </view>
+          <view class="item-status {{ item.status === '待处理' ? 'pending' : 'resolved' }}">
+            {{ item.status === '待处理' ? '待处理' : '已解决' }}
+          </view>
+        </view>
+        <view class="item-content" bindtap="goToDetail" data-id="{{ item.lfId }}">
+        <view>
+                  <text class="item-title">{{ item.title }}</text>
+          <text class="item-desc">{{ item.content }}</text>
+          <view class="item-location" wx:if="{{ item.location }}">
+            <van-icon name="location-o" />
+            <text>{{ item.location }}</text>
+          </view>
+        </view>
+          <view>
+            <image style="width: 100rpx; height: 100rpx;" src="{{baseUrl+item.itemImgUrl}}" />
+          </view>
+        </view>
+        <view class="item-info">
+          <text class="item-time">{{ item.createTime }}</text>
+          <view class="item-actions">
+            <view class="action-btn" bindtap="handleEdit" data-id="{{ item.lfId }}">
+              <van-icon name="edit" />
+              <text>编辑</text>
+            </view>
+            <view class="action-btn delete" bindtap="handleDelete" data-id="{{ item.lfId }}">
+              <van-icon name="delete-o" />
+              <text>删除</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- 加载状态 -->
+    <view class="loading-more" wx:if="{{ hasMore && !isLoading }}">
+      <van-loading size="24px">加载中...</van-loading>
+    </view>
+    <view class="no-more" wx:if="{{ !hasMore }}">
+      <text>没有更多了</text>
+    </view>
+  </scroll-view>
+
+  <!-- 编辑弹窗 -->
+  <van-popup show="{{ showEditPopup }}" position="bottom" round bind:close="onEditPopupClose">
+    <view class="edit-popup">
+      <view class="popup-header">
+        <text class="popup-title">编辑信息</text>
+        <van-icon name="cross" class="popup-close" bindtap="onEditPopupClose" />
+      </view>
+      <view class="popup-content">
+        <van-cell-group inset>
+          <van-cell title="类型" center>
+            <van-radio-group value="{{ editForm.type }}" bind:change="onTypeChange" direction="horizontal">
+              <van-radio name="lost">寻物启事</van-radio>
+              <van-radio name="found">招领启事</van-radio>
+            </van-radio-group>
+          </van-cell>
+          
+          <van-cell title="状态" center>
+            <van-radio-group value="{{ editForm.status }}" bind:change="onStatusChange" direction="horizontal">
+              <van-radio name="待处理">待处理</van-radio>
+              <van-radio name="已处理">已处理</van-radio>
+            </van-radio-group>
+          </van-cell>
+          
+          <van-field
+            value="{{ editForm.title }}"
+            label="标题"
+            placeholder="请输入标题"
+            border="{{ false }}"
+            bind:change="onTitleInput"
+          />
+          
+          <van-field
+            value="{{ editForm.content }}"
+            label="内容"
+            type="textarea"
+            placeholder="请输入内容"
+            border="{{ false }}"
+            autosize="{{ { minHeight: 100 } }}"
+            bind:change="onContentInput"
+          />
+          
+          <van-field
+            value="{{ editForm.location }}"
+            label="地点"
+            placeholder="请输入地点"
+            border="{{ false }}"
+            bind:change="onLocationInput"
+          />
+        </van-cell-group>
+
+        <view class="upload-section">
+          <van-cell title="图片" center>
+            <van-uploader
+              file-list="{{ editForm.fileList }}"
+              bind:after-read="afterRead"
+              bind:delete="onDelete"
+              max-count="1"
+            />
+          </van-cell>
+        </view>
+
+        <view class="btn-group">
+          <van-button plain type="default" block bind:tap="onEditPopupClose">取消</van-button>
+          <van-button type="primary" block bind:tap="submitEdit">保存</van-button>
+        </view>
+      </view>
+    </view>
+  </van-popup>
+</view> 

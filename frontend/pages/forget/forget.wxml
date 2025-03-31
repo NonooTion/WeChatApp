@@ -1,0 +1,62 @@
+<view class="container">
+  <image class="background_image" src="/images/background.png"></image>
+  
+  <!-- 标题区域 -->
+  <view class="header">
+    <text class="title">校园助手</text>
+    <text class="subtitle">密码重置</text>
+  </view>
+
+  <!-- 忘记密码表单区域 -->
+  <view class="login-form">
+    <!-- 用户名输入框 -->
+    <view class="input-group">
+      <image class="input-icon" src="/images/user_icon.png" />
+      <input 
+        class="input" 
+        type="text" 
+        placeholder="请输入用户名" 
+        value="{{forgetForm.username}}"
+        bindinput="bindUsernameInput"
+      />
+    </view>
+
+    <!-- 新密码输入框 -->
+    <view class="input-group">
+      <image class="input-icon" src="/images/password_icon.png" />
+      <input 
+        class="input" 
+        type="password" 
+        placeholder="请输入新密码" 
+        value="{{forgetForm.newPassword}}"
+        bindinput="bindNewPasswordInput"
+      />
+    </view>
+
+    <!-- 确认新密码输入框 -->
+    <view class="input-group">
+      <image class="input-icon" src="/images/password_icon.png" />
+      <input 
+        class="input" 
+        type="password" 
+        placeholder="请确认新密码" 
+        value="{{forgetForm.confirmNewPassword}}"
+        bindinput="bindConfirmNewPasswordInput"
+      />
+    </view>
+
+    <!-- 提交按钮 -->
+    <button 
+      class="login-btn" 
+      bindtap="onResetPassword"
+      hover-class="login-btn-hover"
+    >
+      重置密码
+    </button>
+
+    <!-- 底部链接 -->
+    <view class="bottom-links">
+      <text class="link" bindtap="navigateToLogin">返回登录</text>
+    </view>
+  </view>
+</view>

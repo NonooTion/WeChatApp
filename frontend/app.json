@@ -1,0 +1,63 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/todo/todo",
+    "pages/course/course",
+    "pages/mine/mine",
+    "pages/register/register",
+    "pages/forget/forget",
+    "pages/todo/addTodo/addTodo",
+    "pages/todo/editTodo/editTodo",
+    "pages/topic/topic",
+    "pages/topicDetail/topicDetail",
+    "pages/myTopic/myTopic",
+    "pages/lostAndFound/lostAndFound",
+    "pages/lostAndFoundDetail/lostAndFoundDetail",
+    "pages/myLostAndFound/myLostAndFound"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "校园生活助手",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#1296db",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home_active.png"
+      },
+      {
+        "pagePath": "pages/todo/todo",
+        "text": "待办事项",
+        "iconPath": "images/todo.png",
+        "selectedIconPath": "images/todo_active.png"
+      },
+      {
+        "pagePath": "pages/course/course",
+        "text": "课程",
+        "iconPath": "images/course.png",
+        "selectedIconPath": "images/course_active.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/mine.png",
+        "selectedIconPath": "images/mine_active.png"
+      }
+    ]
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "useExtendedLib": {
+    "weui": true
+  }
+}

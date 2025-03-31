@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/school_life?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: 100200
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+jwt:
+  secret: ijhihosaihd91h7htg19hd9ub9uabsd9u8b219ubdcubidsbgfiuqbwiudbiydsbgvyu31vbioudbsabcuyboy12bfoidub1ofbdosabvo1b3iob1disajobouvb123,
+  expiration: 864000000
+
+file:
+  save:
+    path: ${user.dir}/backend/image/

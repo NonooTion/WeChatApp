@@ -1,0 +1,129 @@
+<view class="container">
+  <!-- 搜索框 -->
+  <view class="search-box">
+    <van-search
+      value="{{ searchValue }}"
+      placeholder="搜索话题"
+      shape="round"
+      background="#ffffff"
+      bind:change="onSearchChange"
+      bind:search="onSearch"
+    />
+  </view>
+
+  <!-- 标签页 -->
+  <view class="tabs-box">
+    <van-tabs active="{{ activeTab }}" bind:change="onTabChange" color="#1296db" line-width="40">
+      <van-tab title="全部话题" name="all" />
+      <van-tab title="普通话题" name="normal" />
+      <van-tab title="匿名话题" name="anonymous" />
+    </van-tabs>
+  </view>
+
+  <!-- 话题列表 -->
+  <scroll-view 
+    class="topic-list" 
+    scroll-y 
+    bindscrolltolower="onLoadMore"
+    refresher-enabled="{{ true }}"
+    bindrefresherrefresh="onRefresh"
+    refresher-triggered="{{ isRefreshing }}"
+  >
+    <block wx:for="{{ topics }}" wx:key="topicId">
+      <view class="topic-card" bindtap="goToDetail" data-id="{{ item.topicId }}">
+        <view class="topic-header">
+          <view class="topic-type {{ item.isAnonymous ? 'anonymous' : 'normal' }}">
+            {{ item.isAnonymous ? '匿名树洞' : '校园话题' }}
+          </view>
+          <text class="topic-time">{{ item.createTime }}</text>
+        </view>
+        <view class="topic-content">
+          <text class="topic-title">{{ item.title }}</text>
+          <text class="topic-desc">{{ item.content }}</text>
+        </view>
+        <view class="topic-info">
+          <view class="topic-author" wx:if="{{ !item.isAnonymous }}">
+            <image class="avatar" src="{{ baseUrl+item.imgUrl }}" mode="aspectFill" />
+            <text>{{ item.name }}</text>
+          </view>
+          <view class="topic-stats">
+            <view class="stat-item">
+              <van-icon name="like-o" />
+              <text>{{ item.likeCount }}</text>
+            </view>
+            <view class="stat-item">
+              <van-icon name="comment-o" />
+              <text>{{ item.commentCount }}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- 加载状态 -->
+    <view class="loading-more" wx:if="{{ hasMore && !isLoading }}">
+      <van-loading size="24px">加载中...</van-loading>
+    </view>
+    <view class="no-more" wx:if="{{ !hasMore }}">
+      <text>没有更多了</text>
+    </view>
+  </scroll-view>
+
+  <!-- 发布按钮 -->
+  <view class="fab-button" bindtap="showActionSheet">
+    <van-icon name="plus" class="fab-icon" />
+  </view>
+
+  <!-- 发布选项 -->
+  <van-action-sheet show="{{ showActionSheet }}" bind:close="onActionSheetClose">
+    <view class="action-sheet">
+      <view class="action-item" bindtap="showPublishPopup">
+        <van-icon name="edit" />
+        <text>发布话题</text>
+      </view>
+      <view class="action-item" bindtap="goToMyTopics">
+        <van-icon name="manager" />
+        <text>管理我的话题</text>
+      </view>
+    </view>
+  </van-action-sheet>
+
+  <!-- 发布弹窗 -->
+  <van-popup show="{{ showPublishPopup }}" position="bottom" round bind:close="onPublishPopupClose">
+    <view class="publish-popup">
+      <view class="popup-header">
+        <text class="popup-title">发布话题</text>
+        <van-icon name="cross" class="popup-close" bindtap="onPublishPopupClose" />
+      </view>
+      <view class="popup-content">
+        <view class="form-item">
+          <text class="form-label">标题</text>
+          <input 
+            class="form-input" 
+            placeholder="请输入标题" 
+            value="{{ publishForm.title }}"
+            bindinput="onTitleInput"
+          />
+        </view>
+        <view class="form-item">
+          <text class="form-label">内容</text>
+          <textarea 
+            class="form-textarea" 
+            placeholder="请输入内容" 
+            value="{{ publishForm.content }}"
+            bindinput="onContentInput"
+          />
+        </view>
+        <view class="form-item">
+          <van-checkbox value="{{ publishForm.isAnonymous }}" bind:change="onAnonymousChange">
+            匿名发布
+          </van-checkbox>
+        </view>
+        <view class="btn-group">
+          <view class="btn btn-default" bindtap="onPublishPopupClose">取消</view>
+          <view class="btn btn-primary" bindtap="submitTopic">发布</view>
+        </view>
+      </view>
+    </view>
+  </van-popup>
+</view>
